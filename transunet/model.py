@@ -21,6 +21,7 @@ def load_pretrained(model, fname='R50+ViT-B_16.npz'):
     
 def TransUNet(image_size=224, 
                 patch_size=16, 
+                channels=2,
                 hybrid=True,
                 grid=(14,14), 
                 hidden_size=768,
@@ -37,7 +38,7 @@ def TransUNet(image_size=224,
                 name='TransUNet'):
     # Tranformer Encoder
     assert image_size % patch_size == 0, "image_size must be a multiple of patch_size"
-    x = tf.keras.layers.Input(shape=(image_size, image_size, 3))
+    x = tf.keras.layers.Input(shape=(image_size, image_size, channels))
 
     # Embedding
     if hybrid:
